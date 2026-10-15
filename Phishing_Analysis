@@ -1,0 +1,68 @@
+# Phishing Analysis
+
+## 1. User Training / User Education (Proactive)
+- Security awareness training
+- Phishing simulation exercises
+- A method for reporting suspicious phishing emails
+- End-user training
+
+## 2. Email Filtering
+- **Email security appliances:** Barracuda, Proofpoint, Mimecast and Symantec
+- **Marking external emails** (Microsoft Exchange or 365, G Suite environment) by creating a **mail flow rule**
+
+### Mail flow rules
+- **Prepend:** used when you want the message (warning) to be at the beginning of the email.
+- Set up an email rule in Microsoft Exchange to block keywords from external emails, or to warn employees not to click on any link that comes from an external email.
+- You can also prepend a red colour banner showing that the email is from an external or unknown source and shouldn't be opened.
+
+## 3. URL Scanning and Blocking
+- Real-time URL analysis (inspection)
+- Block recently registered domains
+
+## 4. Attachment Filtering
+- File extension blocks (file extension filter)
+- Attachment sandboxing
+
+## 5. Email Authentication Methods
+SPF, DKIM, DMARC (see [email-authentication](../email-authentication/README.md)).
+
+## 6. Substance of the Email (Content Analysis)
+Questions to ask:
+- What language does the email use?
+- Are there any indicators of social engineering?
+- How does the email look when it's viewed in the client? Think about the content type, encoding, wording, and even the grammar and formatting.
+
+## 7. URL Analysis Tools
+| Tool | What I use it for |
+|---|---|
+| **PhishTank** | Platform where phishing URLs can be reported for community review and categorisation |
+| **URL2PNG** | Screenshot-as-a-service: see what a site or URL looks like without visiting it and exposing myself to a malicious site |
+| **urlscan.io** | Another URL scanning tool |
+| **VirusTotal** | URL and file reputation |
+| **URLVoid** | URL reputation check |
+| **URLhaus** | Platform like PhishTank for malicious URLs |
+| **Wannabrowser** | Simulates a browser to get the actual content of a webpage (the markup and HTTP response) |
+| **Google Safe Browsing (site status)** | Check the status of a domain |
+
+> **Note:** Remove anything that could leave a company exposed to the public before running scans with any of these tools.
+>
+> **Note:** Best practice is to scan the full URL, the base domain and even the subdomain.
+
+## 8. Defense Measures
+- Take reactive defense actions (if needed)
+- Take proactive defense actions
+- Communicate with users and stakeholders
+
+## 9. Documentation and Reporting
+- Keep records of findings, verdicts and actions taken through detailed reports.
+- Close out alerts and tickets.
+
+When writing a report, these are the key questions to ask and answer in the **"Description"** part:
+1. What is the email asking us to do?
+2. What is the context around the email?
+3. Are there any specific calls to action we can identify?
+4. Are there any specific indicators of social engineering techniques?
+
+## 10. Viewing the Original Email
+### Gmail
+Click the three dots on the right and scroll down until you see **Download message** or **Show original**. This gives the full output of the email header.
