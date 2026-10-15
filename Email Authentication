@@ -1,0 +1,43 @@
+# Email Authentication and Header Analysis
+
+## 1. Checking the Sender IP
+Next, check the IP to find out where it came from or who owns it, using these tools:
+1. **Whois Lookup** in the browser
+2. **whois** from the terminal:
+   ```bash
+   whois <ip address>
+   ```
+3. **Message Header Analyzer:** we can download this from GitHub, then copy the email from Sublime Text and paste it into the analyzer to view the headers.
+4. **MxToolbox** (Email Header Analyzer)
+
+## 2. SPF – Sender Policy Framework
+A mechanism that lets domain owners specify which servers are authorised to send emails on behalf of their domain. It works by publishing an SPF record in DNS. The record usually lists the IP addresses or domain names of services that are authorised to send emails for the domain.
+
+We can check the SPF record of any domain manually with `nslookup` or `dig` on Linux:
+```bash
+nslookup -type=txt <domain> | grep -i spf
+dig TXT <domain> | grep -i spf
+```
+
+### Explanation of the result
+- It shows the **SPF version** used.
+- Then the **IP addresses allowed to send emails** for the domain.
+- It can also have **include** records, like `_spf.google.com`, which say that Google servers can send emails on behalf of the domain. It might not be Google in another domain.
+- **`-all`** sets the policy for mail servers that don't match any of the earlier mechanisms. `-all` means a strict policy: emails from unauthorised senders should be rejected.
+
+## 3. DKIM – DomainKeys Identified Mail
+A method used to authenticate the origin of a mail message. Its main purpose is to let a receiver verify that the email was really sent from the domain it claims to come from, and that the message hasn't been tampered with in transit. It does this using **PKI (Public Key Infrastructure)**.
+
+To check a domain key, run this in the Linux terminal:
+```bash
+nslookup -type=txt s1._domainkey.namecheap.com
+```
+
+## 4. DMARC – Domain-based Message Authentication, Reporting & Conformance
+Works alongside SPF and DKIM to strengthen overall email authentication, with an extra reporting mechanism. It adds a layer of control and visibility for domain owners, letting them set a policy for how their email should be handled if SPF or DKIM checks fail.
+
+| Policy | Tag | Meaning |
+|---|---|---|
+| None | `p=none` | DMARC doesn't enforce compliance |
+| Quarantine | `p=quarantine` | Failed mail is quarantined (e.g. sent to spam) |
+| Reject | `p=reject` | Failed mail is rejected |
