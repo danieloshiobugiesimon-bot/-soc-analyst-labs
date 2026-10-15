@@ -1,0 +1,50 @@
+# Networking Fundamentals
+
+## Network Layer Protocol
+
+### Internet Protocol (IP)
+- IP addressing
+- IP routing
+
+### Transmission Control Protocol (TCP)
+- Connection-oriented and reliable
+- Three-way handshake
+- Flow and congestion control
+
+### User Datagram Protocol (UDP)
+- Connectionless
+- Lightweight and low-overhead: speed over reliability
+- Used for VoIP, video streaming and audio streaming
+
+## IPv4 Packet Header
+- **Time to Live (TTL):** the number of hops it can take.
+
+## TCP Header (32 bits wide)
+```
+|<------- 16 bits ------->|<------- 16 bits ------->|
+|      Source Port        |    Destination Port     |
+|                 Sequence Number                   |
+|              Acknowledgement Number               |
+| Data Offset | Reserved | Flags |      Window       |
+|                                  (sliding window) |
+|  Checksum (error check)  |    Urgent Pointer      |
+|           Options              |     Padding      |
+```
+
+## UDP Header (32 bits wide)
+```
+|   Source Port   |  Destination Port |
+|     Length      |     Checksum      |
+```
+
+## TCP Three-Way Handshake
+```
+Client A  ---- SYN ------->  Server B
+Client A  <--- SYN-ACK ----  Server B
+Client A  ---- ACK ------->  Server B
+```
+
+## tcpdump
+**tcpdump** is a command-line network packet analyser. I use it to analyse the packets moving through the small network we set up.
+```bash
+sudo tcpdump -i <interface>   
