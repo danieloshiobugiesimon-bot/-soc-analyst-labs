@@ -4,8 +4,7 @@ My personal lab notes from my hands-on cybersecurity practical classes (phishing
 
 
 ## Table of Contents
-| Folder | What's inside |
-|---|---|
+
 [phishing-analysis](phishing-analysis/README.md) | User training, email filtering, mail flow rules, URL and attachment filtering, URL reputation tools, content analysis, defense measures and reporting, viewing original emails in Gmail and Outlook |
 [email-authentication](email-authentication/README.md) | SPF, DKIM, DMARC, header analysis, Whois, Message Header Analyzer, MxToolbox, nslookup and dig |
 [malware-analysis](malware-analysis/README.md) | Maldocs, oledump.py, pdf-parser.py, emldump.py, hashing, file reputation, sandboxes (Hybrid Analysis, Joe Sandbox, ANY.RUN), MIME, Base64, URL encoding, CyberChef, eioc.py, EICAR |
